@@ -71,16 +71,25 @@ export function reducer(state: AppState, action: Action): AppState {
         mealPlan: {
           ...state.mealPlan,
           byDay: {
-            mon: null, tue: null, wed: null, thu: null, fri: null, sat: null, sun: null,
+            mon: null,
+            tue: null,
+            wed: null,
+            thu: null,
+            fri: null,
+            sat: null,
+            sun: null,
           },
         },
         shopping: { items: [], generatedFromMealIds: [] },
-        ui: { ...state.ui, selectedDay: null, detailsMealId: null, lastViewedSummary: null },
+        ui: {
+          ...state.ui,
+          selectedDay: null,
+          detailsMealId: null,
+          lastViewedSummary: null,
+        },
       };
 
-    default: {
-      const _exhaustive: never = action;
+    default:
       return state;
-    }
   }
 }
