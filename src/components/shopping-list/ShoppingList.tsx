@@ -6,21 +6,7 @@ import { WEEK } from "../../utils/week";
 import type { WeekdayKey } from "../../types/mealPlan";
 import { useAppContext } from "../../context/AppContext";
 import styles from "./ShoppingList.module.css";
-
-type DetailsRes = {
-  meals: Array<{
-    idMeal: string;
-    strMeal: string;
-    strMealThumb: string;
-    strCategory: string | null;
-    strArea: string | null;
-    strInstructions: string | null;
-    strSource: string | null;
-    strYoutube: string | null;
-    [key: `strIngredient${number}`]: string | null | undefined;
-    [key: `strMeasure${number}`]: string | null | undefined;
-  }> | null;
-};
+import type { DetailsRes } from "../../types/commonTypes";
 
 function makeKey(
   day: string,

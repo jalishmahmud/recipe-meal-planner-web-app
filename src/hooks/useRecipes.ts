@@ -2,27 +2,8 @@ import { useEffect, useState } from "react";
 import { apiGet } from "../utils/api";
 import { toSummary } from "../utils/mealdbMapper";
 import type { RecipeSummary } from "../types/recipe";
+import type { CategoriesRes, FilterRes, SearchRes } from "../types/commonTypes";
 
-type CategoriesRes = {
-  categories: Array<{ strCategory: string }>;
-};
-
-type SearchRes = {
-  meals: Array<{
-    idMeal: string;
-    strMeal: string;
-    strMealThumb: string;
-    strCategory: string | null;
-  }> | null;
-};
-
-type FilterRes = {
-  meals: Array<{
-    idMeal: string;
-    strMeal: string;
-    strMealThumb: string;
-  }> | null;
-};
 function mapFilterToSummary(
   meal: FilterRes["meals"][number],
   category: string
