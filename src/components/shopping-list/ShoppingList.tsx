@@ -89,7 +89,32 @@ export function ShoppingList() {
   };
 
   const toggle = (key: string) => dispatch({ type: "SHOPPING_TOGGLE", key });
-  const clearPurchased = () => dispatch({ type: "SHOPPING_CLEAR_PURCHASED" });
+  const labelToKey = React.useMemo(() => {
+    return new Map(WEEK.map((d) => [d.label, d.key] as const));
+  }, []);
+
+  const clearPurchased = () => {
+    const groups = new Map<
+      string,
+      { dayKey: WeekdayKey; allPurchased: boolean }
+    >();
+
+    for (const it of state.shopping.items) {
+      const dayKey = labelToKey.get(it.day);
+      if (!dayKey) continue;
+
+      const gKey = `${dayKey}__${it.recipeId}`;
+      const prev = groups.get(gKey);
+
+      const nextAllPurchased = (prev?.allPurchased ?? true) && it.purchased;
+      groups.set(gKey, { dayKey, allPurchased: nextAllPurchased });
+    }
+    for (const g of groups.values()) {
+      if (!g.allPurchased) continue;
+      dispatch({ type: "PLAN_REMOVE_MEAL", day: g.dayKey });
+    }
+    dispatch({ type: "SHOPPING_CLEAR_PURCHASED" });
+  };
 
   const hasItems = state.shopping.items.length > 0;
   const totalRecipes = React.useMemo(() => {
