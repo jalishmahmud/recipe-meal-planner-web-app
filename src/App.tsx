@@ -7,6 +7,7 @@ import { Header } from "./components/header/Header";
 import { RecipeSearch } from "./components/recipe-search/RecipeSearch";
 import { RecipeGrid } from "./components/recipe-grid/RecipeGrid";
 import { WeeklyMealPlan } from "./components/weekly-meal-plan/WeeklyMealPlan";
+import { ShoppingList } from "./components/shopping-list/ShoppingList";
 import { RecipeDetailsModal } from "./components/recipe-detail-modal/RecipeDetailsModal";
 import styles from "./App.module.css";
 
@@ -97,6 +98,9 @@ function AppShell() {
         </div>
       ) : (
         <div className={styles["grid"]}>
+          <div>
+            <ShoppingList />
+          </div>
           <div className={styles["card"]}>
             <div className={styles["card-header"]}>
               <h2>How it works</h2>
