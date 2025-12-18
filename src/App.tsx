@@ -9,6 +9,7 @@ import { RecipeGrid } from "./components/recipe-grid/RecipeGrid";
 import { WeeklyMealPlan } from "./components/weekly-meal-plan/WeeklyMealPlan";
 import { ShoppingList } from "./components/shopping-list/ShoppingList";
 import { RecipeDetailsModal } from "./components/recipe-detail-modal/RecipeDetailsModal";
+import { useDebounce } from "./hooks/useDebounce";
 import styles from "./App.module.css";
 import type { WeekdayKey } from "./types/mealPlan";
 
@@ -23,10 +24,15 @@ export default function App() {
 function AppShell() {
   const [tab, setTab] = useState<"planner" | "shopping">("planner");
 
-  const [query, setQuery] = useState("chicken");
+  const [query, setQuery] = useState("");
   const [category, setCategory] = useState("All");
 
-  const { categories, recipes, loading, error } = useRecipes(query, category);
+  const debouncedQuery = useDebounce(query.length >= 3 ? query : "", 500);
+
+  const { categories, recipes, loading, error } = useRecipes(
+    debouncedQuery,
+    category
+  );
 
   const {
     mealPlan,
@@ -74,9 +80,13 @@ function AppShell() {
               query={query}
               onQueryChange={setQuery}
               category={category}
-              onCategoryChange={setCategory}
+              onCategoryChange={(nextCategory) => {
+                setCategory(nextCategory);
+                setQuery("");
+              }}
               categories={categories}
             />
+
             <RecipeGrid
               recipes={recipes}
               loading={loading}

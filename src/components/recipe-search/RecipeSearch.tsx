@@ -27,6 +27,7 @@ export function RecipeSearch({
             onChange={(e) => onQueryChange(e.target.value)}
             placeholder="Search by recipe name (e.g., chicken, pasta)"
           />
+
           <select
             className={styles["select"]}
             value={category}
@@ -40,6 +41,11 @@ export function RecipeSearch({
             ))}
           </select>
         </div>
+        {query.length > 0 && query.length < 3 && (
+          <p className={`${styles["muted"]} ${styles["small"]}`}>
+            Type at least 3 characters to search
+          </p>
+        )}
         <p
           className={`${styles["muted"]} ${styles["small"]}`}
           style={{ marginTop: 10 }}
