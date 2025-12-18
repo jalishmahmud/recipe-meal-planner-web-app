@@ -14,7 +14,7 @@ export function RecipeGrid({
 }) {
   return (
     <div className={styles["card"]} style={{ marginTop: 14 }}>
-      <div className="card-header">
+      <div className={styles["card-header"]}>
         <h2>Results</h2>
         <small>{loading ? "Loading…" : `${recipes.length} recipes`}</small>
       </div>
