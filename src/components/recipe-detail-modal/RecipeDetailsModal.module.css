@@ -6,7 +6,7 @@
     align-items: center;
     justify-content: center;
     padding: 40px 18px;
-    z-index: 50;
+    z-index: 60;
 }
 
 .modal {
@@ -15,9 +15,9 @@
     display: flex;
     flex-direction: column;
     border-radius: 20px;
-    background: rgba(15, 23, 42, 0.86);
+    background: rgba(15, 23, 42, 0.92);
     border: 1px solid rgba(255, 255, 255, 0.14);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45);
     overflow: hidden;
 }
 
@@ -30,8 +30,13 @@
     gap: 12px;
     position: sticky;
     top: 0;
-    background: rgba(15, 23, 42, 0.96);
-    z-index: 1;
+    background: rgba(15, 23, 42, 0.97);
+    z-index: 2;
+}
+
+.modal-head h3 {
+    margin: 0;
+    font-size: 16px;
 }
 
 .modal-body {
@@ -42,9 +47,20 @@
 
 .modal-grid {
     display: grid;
-    grid-template-columns: 0.85fr 1.15fr;
+    grid-template-columns: 0.75fr 1.25fr;
     gap: 14px;
 }
+
+.modal-grid img {
+    width: 100%;
+    max-width: 100%;
+    max-height: 320px;
+    object-fit: cover;
+    border-radius: 14px;
+    display: block;
+    margin-bottom: 20px;
+}
+
 
 @media (max-width: 860px) {
     .modal-grid {
@@ -57,7 +73,6 @@
     gap: 10px;
     flex-wrap: wrap;
     align-items: center;
-    margin-top: 10px;
 }
 
 .btn {
@@ -67,7 +82,7 @@
     padding: 11px 12px;
     border-radius: 14px;
     cursor: pointer;
-    transition: transform 0.04s ease;
+    transition: transform 0.04s ease, background 0.12s ease;
 }
 
 .btn:hover {
@@ -76,7 +91,7 @@
 
 .btn-success {
     border-color: rgba(34, 197, 94, 0.45);
-    background: rgba(34, 197, 94, 0.18);
+    background: rgba(34, 197, 94, 0.20);
 }
 
 .btn-ghost {
@@ -86,7 +101,7 @@
 }
 
 .alert {
-    padding: 12px 12px;
+    padding: 12px;
     border-radius: 14px;
     border: 1px solid rgba(255, 255, 255, 0.14);
     background: rgba(255, 255, 255, 0.06);
@@ -94,9 +109,9 @@
 }
 
 .alert-error {
-    border-color: rgba(239, 68, 68, 0.3);
+    border-color: rgba(239, 68, 68, 0.30);
     background: rgba(239, 68, 68, 0.12);
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.90);
 }
 
 .pill {
@@ -106,21 +121,26 @@
     padding: 6px 10px;
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.10);
     color: rgba(255, 255, 255, 0.72);
     font-size: 12px;
 }
 
+.details-name {
+    margin: 0 0 8px;
+    font-size: 18px;
+}
+
 .card {
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 16px;
     overflow: hidden;
 }
 
 .card-header {
-    padding: 14px 16px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+    padding: 12px 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -129,8 +149,7 @@
 
 .card-header h2 {
     margin: 0;
-    font-size: 15px;
-    letter-spacing: 0.2px;
+    font-size: 14px;
 }
 
 .card-header small {
@@ -138,7 +157,7 @@
 }
 
 .card-body {
-    padding: 14px 16px;
+    padding: 12px 14px;
 }
 
 .list {
