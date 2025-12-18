@@ -19,10 +19,12 @@ https://github.com/jalishmahmud/recipe-meal-planner-web-app
 ## Setup & Run
 
 ### Prerequisites
+
 - **Node.js:** v22.14.0
 - **npm:** 10.9.2
 
 ### Installation
+
 ```bash
 git clone https://github.com/jalishmahmud/recipe-meal-planner-web-app.git
 cd recipe-meal-planner-web-app
@@ -46,6 +48,7 @@ src/
 
 ### State Management Approach
 ```
+
 Context API + useReducer
 
 Centralized global state for:
@@ -60,15 +63,15 @@ Centralized global state for:
 
 Chosen instead of Redux to keep the project lightweight, readable, and easy to maintain.
 
-
 ### Custom Hooks
+
 1. useRecipes(searchQuery, category)
 
-    Fetches recipes using:
+   Fetches recipes using:
 
-    search.php (search by recipe name)
+   search.php (search by recipe name)
 
-    filter.php (filter by category)
+   filter.php (filter by category)
 
 Features:
 
@@ -82,11 +85,11 @@ Features:
 
 2. useRecipeDetails(id)
 
-    Fetches full recipe details via lookup.php
+   Fetches full recipe details via lookup.php
 
-    Used inside the recipe details modal
+   Used inside the recipe details modal
 
-    Handles loading, error, and abort scenarios
+   Handles loading, error, and abort scenarios
 
 3. useMealPlan()
 
@@ -104,10 +107,10 @@ Persists data using localStorage
 
 4. useDebounce()
 
-    Debounced search (500ms, minimum 3 characters)
-
+   Debounced search (500ms, minimum 3 characters)
 
 ## Technical Decisions
+
 Why these libraries & patterns?
 
     React + TypeScript for strong type safety and maintainability
@@ -135,30 +138,31 @@ Why these libraries & patterns?
     Add drag-and-drop support for meal planning
 
 # Time Breakdown
-    | Task              | Time Spent    |
-| ----------------- | ------------- |
-| Setup & structure | 2 hrs       |
-| Custom hooks      | 4 hrs         |
-| State management  | 2 hrs         |
-| UI components     | 5 hrs         |
-| API integration   | 3 hrs         |
-| Testing & fixes   | 2 hrs         |
-| **Total**         | **~18 hours** |
+
+- Setup & structure | 2 hrs
+- Custom hooks | 4 hrs
+- State management | 2 hrs
+- UI components | 5 hrs
+- API integration | 3 hrs
+- Testing & fixes | 2 hrs
+- Total | 18 hrs
 
 ## Challenges Faced
+
 1. Inconsistent API response shapes
 
-    Different endpoints (search, filter, lookup) return different data
+   Different endpoints (search, filter, lookup) return different data
 
-    Solved by defining strict TypeScript types and mapping functions
+   Solved by defining strict TypeScript types and mapping functions
 
 2. Search & category interaction
 
-    Category needed to work independently while still allowing text search
+   Category needed to work independently while still allowing text search
 
-    Solved by resetting search input on category change and debouncing the query
+   Solved by resetting search input on category change and debouncing the query
 
 ## Screenshots
+
 ![Recipe Search](./screenshots/recipe-search.png)
 ![Recipe Details](./screenshots/recipe-details.png)
 ![Weekly Meal Plan](./screenshots/weekly-meal-plan.png)
