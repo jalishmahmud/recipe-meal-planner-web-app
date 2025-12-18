@@ -5,7 +5,7 @@ import type { RecipeSummary } from "../types/recipe";
 import type { CategoriesRes, FilterRes, SearchRes } from "../types/commonTypes";
 
 function mapFilterToSummary(
-  meal: FilterRes["meals"][number],
+  meal: NonNullable<FilterRes["meals"]>[number],
   category: string
 ): RecipeSummary {
   return {
@@ -29,7 +29,7 @@ export function useRecipes(searchQuery: string, category: string) {
         const res = await apiGet<CategoriesRes>("/categories.php", ac.signal);
         const names = res.categories.map((c) => c.strCategory).filter(Boolean);
         setCategories(names);
-      } catch (e) {
+      } catch {
         setCategories([]);
       }
     })();

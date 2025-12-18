@@ -25,10 +25,13 @@ export function ShoppingList() {
 
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
+
+  type PlannedMeal = NonNullable<(typeof state.mealPlan.byDay)[WeekdayKey]>;
+
   const plannedByDay: Array<{
     dayKey: WeekdayKey;
     dayLabel: string;
-    meal: any | null;
+    meal: PlannedMeal | null;
   }> = WEEK.map((d) => ({
     dayKey: d.key,
     dayLabel: d.label,

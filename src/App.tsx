@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import { useRecipes } from "./hooks/useRecipes";
 import { useMealPlan } from "./hooks/useMealPlan";
 import type { RecipeSummary } from "./types/recipe";
@@ -10,6 +10,7 @@ import { WeeklyMealPlan } from "./components/weekly-meal-plan/WeeklyMealPlan";
 import { ShoppingList } from "./components/shopping-list/ShoppingList";
 import { RecipeDetailsModal } from "./components/recipe-detail-modal/RecipeDetailsModal";
 import styles from "./App.module.css";
+import type { WeekdayKey } from "./types/mealPlan";
 
 export default function App() {
   return (
@@ -20,10 +21,10 @@ export default function App() {
 }
 
 function AppShell() {
-  const [tab, setTab] = React.useState<"planner" | "shopping">("planner");
+  const [tab, setTab] = useState<"planner" | "shopping">("planner");
 
-  const [query, setQuery] = React.useState("chicken");
-  const [category, setCategory] = React.useState("All");
+  const [query, setQuery] = useState("chicken");
+  const [category, setCategory] = useState("All");
 
   const { categories, recipes, loading, error } = useRecipes(query, category);
 
@@ -38,7 +39,7 @@ function AppShell() {
     closeDetails,
   } = useMealPlan();
 
-  const [detailsOpen, setDetailsOpen] = React.useState(false);
+  const [detailsOpen, setDetailsOpen] = useState(false);
 
   const handlePickRecipe = (r: RecipeSummary) => {
     openDetails(r.id, r);
@@ -46,13 +47,12 @@ function AppShell() {
   };
 
   const handleAddToDay = (
-    day: any,
+    day: WeekdayKey,
     id: string,
     name: string,
     thumb: string,
     cat: string
   ) => {
-    // day is WeekdayKey but modal props keep it simple
     setMealForDay(day, { id, name, thumbnail: thumb, category: cat });
     setDetailsOpen(false);
     closeDetails();

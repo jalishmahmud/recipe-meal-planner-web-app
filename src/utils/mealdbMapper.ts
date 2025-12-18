@@ -1,5 +1,9 @@
 import type { RecipeDetails, RecipeSummary, Ingredient } from "../types/recipe";
 
+import type { SearchRes } from "../types/commonTypes";
+
+type SearchMeal = NonNullable<SearchRes["meals"]>[number];
+
 type MealDbMeal = {
   idMeal: string;
   strMeal: string;
@@ -13,12 +17,12 @@ type MealDbMeal = {
   [key: `strMeasure${number}`]: string | null | undefined;
 };
 
-export function toSummary(meal: MealDbMeal): RecipeSummary {
+export function toSummary(m: SearchMeal): RecipeSummary {
   return {
-    id: meal.idMeal,
-    name: meal.strMeal,
-    thumbnail: meal.strMealThumb,
-    category: meal.strCategory ?? "Unknown",
+    id: m.idMeal,
+    name: m.strMeal,
+    thumbnail: m.strMealThumb,
+    category: m.strCategory ?? "Unknown",
   };
 }
 
